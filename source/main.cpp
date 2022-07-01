@@ -21,7 +21,6 @@ int main(int argc ,char** argv)
 {
   cv::Mat raw;
   cv::Mat output;
-
   object red(redMinHSV,redMaxHSV,redBondColor,redLabel);
   object yellow(yellowMinHSV,yellowMaxHSV,yellowBondColor,yellowLabel);
   object blue(blueMinHSV,blueMaxHSV,blueBondColor,blueLabel);
