@@ -1,22 +1,5 @@
 #include <opencv2/opencv.hpp>
-#include <stdio.h>
-
-
-/*the main function is on the bottom of this file*/
-
-class object
-{
-  int minHSV[3];//minimum h,s and v values
-  int maxHSV[3];//maximum h,s and v vales
-  char label[7];//tag
-  cv::Scalar boundRectColor;//bounding rectangle colour
-public:
-  object(int[],int[],int[],char[]);//minhsv,maxhsv,bounfing rectangle colour,label
-  cv::Mat covtBinary(cv::Mat);//function to covert to binary
-  cv::Mat equalize(cv::Mat);//equalizes the image ;
-  void find(cv::Mat,cv::Mat);//draws the contours on passed matrix and draws the boundingRectangle
-  void find(cv::Mat,cv::Mat,cv::Mat);//finds object after subtracting 2nd argument from first and draws the boundingRect
-};
+#include "object.h"
 
 cv::Mat object::covtBinary(cv::Mat rawFile) //function takes a matrix and covtBinarys the given component
 {
@@ -116,46 +99,5 @@ object::object(int min[3],int max[3],int bRectColor[3],char tag[7])//constructor
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////////main code//////////////////////////////////////////////////////////////////////////
 
 
-#define CAMERAPORT 0
-
-int redMinHSV[]={113,119,76};
-int redMaxHSV[]={163,214,235};
-int redBondColor[]={0,0,255};
-char redLabel[]={"BOX"};
-int yellowMinHSV[]={54,74,125};
-int yellowMaxHSV[]={117,247,255};
-int yellowBondColor[]={0,255,255};
-char yellowLabel[]={"DISC"};
-int blueMinHSV[]={0,96,81 };
-int blueMaxHSV[]={20,255,231};
-int blueBondColor[]={255,0,0};
-char blueLabel[]={"BOTTLE"};
-
-
-int main(int argc ,char** argv)
-{
-  cv::Mat raw;
-  cv::Mat output;
-
-  object red(redMinHSV,redMaxHSV,redBondColor,redLabel);
-  object yellow(yellowMinHSV,yellowMaxHSV,yellowBondColor,yellowLabel);
-  object blue(blueMinHSV,blueMaxHSV,blueBondColor,blueLabel);
-
-  cv::namedWindow("LIVE",cv::WINDOW_AUTOSIZE);
-  cv::VideoCapture live(0);
-
-  while(1)
-  {
-    live >> output;
-    output.copyTo(raw);
-    red.find(raw.clone(),output);
-
-    yellow.find(raw.clone(),red.covtBinary(raw.clone()),output);
-    blue.find(raw.clone(),red.covtBinary(raw.clone()),output);
-    cv::imshow("LIVE",output);
-    cv::waitKey(40);
-  }
-}

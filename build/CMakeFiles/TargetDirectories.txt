@@ -1,0 +1,3 @@
+/home/hitech/files/GET training/object-identifier/build/CMakeFiles/rebuild_cache.dir
+/home/hitech/files/GET training/object-identifier/build/CMakeFiles/edit_cache.dir
+/home/hitech/files/GET training/object-identifier/build/CMakeFiles/identifier.dir
