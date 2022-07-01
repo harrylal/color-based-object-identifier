@@ -13,14 +13,10 @@ opencv2/opencv.hpp
 /home/hitech/files/GET training/object-identifier/source/main.cpp
 object.h
 /home/hitech/files/GET training/object-identifier/source/object.h
+cmath
+-
 opencv2/opencv.hpp
 -
-
-/home/hitech/files/GET training/object-identifier/source/src/object.cpp
-opencv2/opencv.hpp
--
-object.h
-/home/hitech/files/GET training/object-identifier/source/src/object.h
 
 /home/hitech/files/opencv/include/opencv/cxcore.h
 opencv2/core/core_c.h
